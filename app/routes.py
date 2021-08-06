@@ -36,10 +36,11 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
+        flash('You are already logged in.')
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
+        user = User.query.filter_by(email=form.email.data).first()
         if user is None or not bcrypt.check_password_hash(user.passwordHash, form.password.data):
             flash('Your username or password is incorrect.')
             return redirect(url_for('login'))

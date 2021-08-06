@@ -11,8 +11,8 @@
             {% endfor %}
         {% endwith %}
     {{ form.csrf_token }}
-    {{ form.username.label(class='sr-only') }}
-    {{ form.username(class='form-control') }}
+    {{ form.email.label(class='sr-only') }}
+    {{ form.email(class='form-control') }}
     {{ form.password.label(class='sr-only') }}
     {{ form.password(class='form-control') }}
     {{ form.submit(class='btn btn-outline-dark') }}
