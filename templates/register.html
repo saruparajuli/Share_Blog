@@ -1,0 +1,24 @@
+
+
+{% block content %}
+<link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/examples/sign-in/signin.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<form class="form-signin" method="POST" action="">
+    <p>Sign up</p>
+            {% for error in form.username.errors %}
+                <div class="alert alert-info mt-3">{{ error }}</div>
+            {% endfor %}
+            {% for error in form.email.errors %}
+                <div class="alert alert-info mt-3">{{ error }}</div>
+            {% endfor %}
+    {{ form.csrf_token }}
+    {{ form.email.label(class='sr-only') }}
+    {{ form.email(class='form-control') }}
+    {{ form.username.label(class='sr-only') }}
+    {{ form.username(class='form-control') }}
+    {{ form.password.label(class='sr-only') }}
+    {{ form.password(class='form-control') }}
+    {{ form.submit(class='btn btn-outline-dark') }} 
+    <a style="text-decoration: none; float: right;" class="text-muted" href="/">return</a>
+</form>
+{% endblock %}

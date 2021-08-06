@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+    {% if current_user.username == name %}
+        <p>This is Your Home Page, {{ current_user.username }}</p>
+        <a class="btn btn-outline-dark mb-3" id='show' onclick="show()">Create a New Post</a><br>
+        <form id='contentForm' style="display: none; width: 100%;" method="POST" action="">
+            {{ form.csrf_token}}
+            {{ form.title.label }}
+            {{ form.title(class='form-control')  }}
+            {{ simplemde.css }}
+            {{ simplemde.js }}
+            {{ form.content }}
+            {{ simplemde.load }}
+            {{ form.submit(class='btn btn-outline-dark mt-2 mb-5') }}
+        </form>
+    {% else %}
+        <p>This is {{ name }}'s Homepage</p>
+{% endif %}
+{% for post in posts %}
+{% if current_user.username == name %}
+<div style="float: right; width: 100%;">
+    <a class="btn btn-outline-dark" href="/update/{{post.id}}">UPDATE</a><a class="btn btn-outline-dark" href="/delete/{{post.id}}">DELETE</a></div>
+{% endif %}
+    <h2><a href="/{{post.user.username}}/{{ post.id }}">{{post.title}}</a></h2>
+    {{ post.content | markdown}} <br>
+{% endfor %}
+
+<script>
+    function show() {
+        if (document.getElementById('contentForm').style.display == 'none') {
+            document.getElementById('contentForm').style.display = 'inline-block';
+            document.getElementById('show').innerHTML = 'Cancel';
+        }
+        else {
+            document.getElementById('contentForm').style.display = 'none';
+            document.getElementById('show').innerHTML = 'Create a New Post';
+        }
+    }
+</script>
+{% endblock %}

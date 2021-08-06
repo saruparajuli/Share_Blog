@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+<form id='contentForm' style="width: 100%;" method="POST" action="">
+    {{ form.csrf_token}}
+    {{ form.title.label }}
+    {{ form.title(class='form-control')  }}
+    {{ simplemde.css }}
+    {{ simplemde.js }}
+    {{ form.content }}
+    {{ simplemde.load }}
+    {{ form.submit(class='btn btn-outline-dark mt-2') }}
+</form>
+{% endblock %}
