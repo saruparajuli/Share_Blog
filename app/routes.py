@@ -30,7 +30,7 @@ def register():
         user = User(username=form.username.data, email=form.email.data ,passwordHash=pw_hash)
         db.session.add(user)
         db.session.commit()
-        return(redirect(url_for('index')))
+        return(redirect(url_for('login')))
     return render_template('register.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])

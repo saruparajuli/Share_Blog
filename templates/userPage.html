@@ -20,7 +20,7 @@
 {% for post in posts %}
 {% if current_user.username == name %}
 <div style="float: right; width: 100%;">
-    <a class="btn btn-outline-dark" href="/update/{{post.id}}">UPDATE</a><a class="btn btn-outline-dark" href="/delete/{{post.id}}">DELETE</a></div>
+    <a href="/update/{{post.id}}">UPDATE</a><a style="float: right;" href="/delete/{{post.id}}">DELETE</a></div>
 {% endif %}
     <h2><a href="/{{post.user.username}}/{{ post.id }}">{{post.title}}</a></h2>
     {{ post.content | markdown}} <br>

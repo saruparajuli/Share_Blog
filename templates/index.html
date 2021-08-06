@@ -8,12 +8,6 @@
 {% endif %}
 {% if current_user.is_authenticated %}
   Hi {{ current_user.username }}! Hope you are well today. Visit your <a href="/{{ current_user.username }}">homepage.</a>
-<h4 style="border-bottom: solid;" class="mt-5 mb-5">Latest Posts from other Users</h4>
-{% for post in posts %}
-<h2><a style="color: black;" href="/{{post.user.username}}/{{ post.id }}">{{post.title}}</a></h2>
-<div class="mb-3" style="float: right; width: 100%; font-size: 14px;">
-  By: <a class="text-muted" href="/{{post.user.username}}">{{post.user.username}}</a>| Created: {{ post.created }}</div>
-  {{ post.content | markdown}} <br>
-  {% endfor %}
+
   {% endif %}
 {% endblock %}

@@ -5,9 +5,9 @@
     By: <a class="text-muted" href="/{{post.user.username}}">{{post.user.username}}</a>| Created: {{ post.created }}</div>
 {{ post.content | markdown }}
 {% for comment in comments %}
-    <div class="alert alert-success mb-0">{{comment.comment}}</div>
-    <span style="margin-left: 2px;" class="text-muted">Commented by: {{ comment.user.username }} 
-        {% if current_user.id == comment.user.id %} <a href="/delete/{{post.id}}/{{comment.id}}">DELETE</a> {% endif %}</span>
+    <div class="alert alert-success mb-1">{{comment.comment}}<span style="margin-left: 2px; font-size: 14px;" class="text-muted">Commented by: {{ comment.user.username }} 
+        {% if current_user.id == comment.user.id %} <a href="/delete/{{post.id}}/{{comment.id}}">DELETE</a> {% endif %}</span></div>
+    
 {% endfor %}
 {% if current_user.is_authenticated %}
 <form method="POST" action="">
